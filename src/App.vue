@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <header>
-      <img alt="Neoartis logo" src="./assets/logo_neoartis.png">
-
-    </header>
-
     <main>
+      <div class="logo-container">
+        <img class="partner-logo" src="./assets/chambre_commerce-logo.png" alt="Chambre de Commerce">
+        <img class="main-logo" src="./assets/logo-neoartis.png" alt="Neoartis logo">
+      </div>
+
       <section class="hero">
         <h2>Bienvenue chez NEOartis</h2>
         <p>Votre plateforme de mise en relation pour la réédition d'objets anciens</p>
@@ -17,7 +17,7 @@
       </section>
 
       <section class="cta">
-        <h2>  Artisans ? rejoignez nous sur le salon </h2>
+        <h2>Artisans ? rejoignez nous sur le salon</h2>
         <button @click="redirectToForm">Commencer maintenant</button>
       </section>
     </main>
@@ -46,30 +46,38 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-image: url('./assets/background.png'); /* Remplacez par le chemin de votre image */
-  background-size: cover; /* Couvre toute la page */
-  background-position: center; /* Centre l'image */
-  min-height: 100vh; /* Assure que la page prend au moins la hauteur de l'écran */
-}
-
-header {
+  background-image: url('./assets/background.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
   padding: 20px;
-}
-
-header img {
-  max-width: 100px;
 }
 
 main {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent pour le contraste */
-  border-radius: 8px; /* Coins arrondis */
+  padding: 40px 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.partner-logo,
+.main-logo {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
 }
 
 section {
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 
 .hero {
