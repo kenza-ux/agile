@@ -22,7 +22,7 @@ const routes = [
         component: HomePage
     },
     {
-        path: '/artisan',
+        path: '/artisans',
         name: 'ArtisanPage',
         component: ArtisanPage
     },
@@ -36,6 +36,17 @@ const routes = [
         name: 'ArtisansListe',
         component: ArtisansListe
     },
+    {
+        path: '/artisan/dashboard',
+        component: () => import('@/views/ArtisanDash.vue'),
+        meta: { requiresAuth: true, role: 'artisan' }
+    },
+    {
+        path: '/client/dashboard',
+        component: () => import('@/views/ClientDash.vue'),
+        meta: { requiresAuth: true, role: 'client' }
+    }
+
 ]
 
 const router = createRouter({

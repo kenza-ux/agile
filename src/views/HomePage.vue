@@ -1,24 +1,22 @@
 <template>
   <div class="home-page">
-    <nav-bar />
+    <NavBar />
 
     <div class="profiles-container">
       <div class="profile-card client-profile">
         <h2>Porteur de Projet</h2>
         <p>Trouvez les artisans qualifiés pour votre projet</p>
-        <div class="auth-buttons">
-          <router-link to="/client/login" class="btn">Se connecter</router-link>
-          <router-link to="/client/register" class="btn outline">S'inscrire</router-link>
-        </div>
+        <router-link to="/register?role=client" class="btn outline">
+          Commencer maintenant
+        </router-link>
       </div>
 
       <div class="profile-card artisan-profile">
         <h2>Artisan</h2>
         <p>Trouvez des projets passionnants</p>
-        <div class="auth-buttons">
-          <router-link to="/artisan/login" class="btn">Se connecter</router-link>
-          <router-link to="/artisan/register" class="btn outline">S'inscrire</router-link>
-        </div>
+        <router-link to="/register?role=artisan" class="btn outline">
+          Rejoindre la plateforme
+        </router-link>
       </div>
     </div>
   </div>
@@ -32,6 +30,9 @@ export default {
   components: { NavBar }
 }
 </script>
+
+<!-- Garder les styles existants -->
+
 
 <style scoped>
 .home-page {

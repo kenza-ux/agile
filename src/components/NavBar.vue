@@ -3,45 +3,71 @@
     <router-link to="/" class="logo">NEOartis</router-link>
 
     <div class="nav-links">
-      <router-link to="/artisansListe" class="nav-link">Liste des artisans</router-link>
-      <button
-          v-if="!isAuthenticated"
-          @click="goToLogin"
-          class="auth-btn"
-      >
-        Connexion
-      </button>
-      <button
-          v-else
-          @click="logout"
-          class="auth-btn"
-      >
-        Déconnexion
-      </button>
+      <router-link to="/artisans">Liste des artisans</router-link>
+
+      <template v-if="!isAuthenticated">
+        <button @click="openAuthModal('login')" class="auth-btn">
+          Connexion
+        </button>
+      </template>
+
+      <template v-else>
+        <router-link
+            :to="userRole === 'artisan' ? '/artisan/dashboard' : '/client/dashboard'"
+            class="profile-link"
+        >
+          {{ currentUser.name }}
+        </router-link>
+        <button @click="logout" class="auth-btn">
+          Déconnexion
+        </button>
+      </template>
     </div>
+
+    <!-- Modal d'authentification -->
+    <AuthModal
+        v-if="showAuthModal"
+        :mode="authModalMode"
+        @close="showAuthModal = false"
+        @success="handleAuthSuccess"
+    />
   </nav>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+import AuthModal from '@/components/AuthModal.vue'
+
 export default {
-  name: 'NavBar',
-  computed: {
-    isAuthenticated() {
-      return localStorage.getItem('authToken')
+  components: { AuthModal },
+  data() {
+    return {
+      showAuthModal: false,
+      authModalMode: 'login' // 'login' ou 'register'
     }
   },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'userRole', 'currentUser'])
+  },
   methods: {
-    goToLogin() {
-      this.$router.push('/client/login')
+    ...mapActions(['logout']),
+    openAuthModal(mode) {
+      this.authModalMode = mode
+      this.showAuthModal = true
     },
-    logout() {
-      localStorage.removeItem('authToken')
-      localStorage.removeItem('userRole')
-      this.$router.push('/')
+    handleAuthSuccess() {
+      this.showAuthModal = false
+      this.$router.push(
+          this.userRole === 'artisan'
+              ? '/artisan/dashboard'
+              : '/client/dashboard'
+      )
     }
   }
 }
 </script>
+
+
 
 <style scoped>
 .navbar {

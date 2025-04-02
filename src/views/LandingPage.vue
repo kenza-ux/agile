@@ -1,3 +1,4 @@
+
 <!-- src/views/LandingPage.vue -->
 <template>
   <div class="landing-page">
