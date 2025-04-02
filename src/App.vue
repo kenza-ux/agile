@@ -69,9 +69,13 @@ main {
   margin-bottom: 30px;
 }
 
-.partner-logo,
-.main-logo {
+.partner-logo{
   height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+.main-logo {
+  height: 120px;
   width: auto;
   object-fit: contain;
 }
